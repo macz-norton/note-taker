@@ -14,6 +14,14 @@ app.use(express.static("public"));
 
 app.get("/api/notes", function(req, res) {
 
+    fs.readFile("db.json", (err, data) => {
+        if (err) throw (err);
+        console.log(data);
+    })
+
+    JSON.parse(data);
+    
+    return res.json(notes);
 
 });
 
