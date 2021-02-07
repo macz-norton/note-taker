@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 
 const app = express();
@@ -9,12 +10,30 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+// API routes
+
+app.get("/api/notes", function(req, res) {
+
+
 });
 
+app.post("/api/notes", function(req, res) {
+
+    
+});
+
+app.delete("/api/notes/:id", function(req, res) {
+
+    
+});
+
+// HTML routes
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "notes.html"));
+});
+
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, function() {
