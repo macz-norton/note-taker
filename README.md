@@ -27,6 +27,7 @@ No installation required.
 
 * Link to the deployed application: https://note-taker-norton.herokuapp.com/
 * Gif that demonstrates the application's functionality:
+![Gif](https://user-images.githubusercontent.com/71162422/107169073-d6267e80-6971-11eb-9786-fd9c4393baf6.mp4)
 
 ## Tests
 
