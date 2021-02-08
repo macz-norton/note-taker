@@ -13,22 +13,20 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // API routes
-app.get("/api/notes", function(req, res) {
+app.get("/api/notes", (req, res) => {
 
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
-        console.log(data);
-    })
 
-    console.log(req.body);
-
-    JSON.parse(data);
+        let parsedNotes = JSON.parse(data);
     
-    return res.json(data);
+        return res.json(parsedNotes);
+
+    })
 
 });
 
-app.post("/api/notes", function(req, res) {
+app.post("/api/notes", (req, res) => {
 
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
@@ -45,7 +43,7 @@ app.post("/api/notes", function(req, res) {
 
 });
 
-app.delete("/api/notes/:id", function(req, res) {
+app.delete("/api/notes/:id", (req, res) => {
 
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
