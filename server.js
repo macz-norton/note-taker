@@ -65,11 +65,11 @@ app.delete("/api/notes/:id", function(req, res) {
 });
 
 // HTML routes
-app.get("/notes", function(req, res) {
+app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-app.get("*", function(req, res) {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
