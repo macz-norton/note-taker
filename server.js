@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const uniqid = require("uniqid"); 
 
 const db = require("./db/db.json");
 
@@ -28,6 +29,9 @@ app.get("/api/notes", (req, res) => {
 
 app.post("/api/notes", (req, res) => {
 
+    // Adding unique ID to each note
+    req.body["id"] = uniqid();
+    
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
 
@@ -39,7 +43,7 @@ app.post("/api/notes", (req, res) => {
 
         fs.writeFile("./db/db.json", saveNote, (err, data) => {
             if (err) throw (err);
-            
+
             return res.json(saveNote);
         });
     });
@@ -49,18 +53,13 @@ app.delete("/api/notes/:id", (req, res) => {
 
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
-        console.log(data);
+
+        let parsedNotes = JSON.parse(data);
+
+        parsedNotes.push(req.body);
+
+
     })
-
-    JSON.parse(data);
-
-    req.params.id
-
-    // .findIndex();
-
-    // array.splice / 
-
-    // Return success method
     
 });
 
