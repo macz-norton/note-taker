@@ -22,7 +22,7 @@ app.get("/api/notes", (req, res) => {
     
         return res.json(parsedNotes);
 
-    })
+    });
 
 });
 
@@ -30,17 +30,19 @@ app.post("/api/notes", (req, res) => {
 
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
-        console.log(data);
-    })
 
-    JSON.parse(data);
+        let parsedNotes = JSON.parse(data);
 
-    db.push(req.body);
+        parsedNotes.push(req.body);
 
-    JSON.stringify();
+        let saveNote = JSON.stringify(parsedNotes);
 
-    // res.sendFile(path.join(__dirname, "notes.html"));
-
+        fs.writeFile("./db/db.json", saveNote, (err, data) => {
+            if (err) throw (err);
+            
+            return res.json(saveNote);
+        });
+    });
 });
 
 app.delete("/api/notes/:id", (req, res) => {
