@@ -30,11 +30,16 @@ No installation required.
 
 ## Tests
 
-1. 
+1. Application allows users to create and save notes.
+2. Application allows users to view previously saved notes.
+3. Application allows users to delete previously saved notes.
 
 ## Credits
-
-*
+* [Express.js](https://expressjs.com/)
+* [uniqid, npm package](https://www.npmjs.com/package/uniqid)
+* [nodemon, npm package](https://www.npmjs.com/package/nodemon)
+* [File system, node](https://nodejs.org/api/fs.html)
+* [Heroku](https://heroku.com/)
 
 ## License
 
