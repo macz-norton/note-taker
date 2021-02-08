@@ -1,13 +1,17 @@
+// Require dependencies
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const uniqid = require("uniqid"); 
 
+// Require database json
 const db = require("./db/db.json");
 
+// Start using Express server
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware for Express
 app.use(express.urlencoded({ extended:true }));
 app.use(express.json());
 
@@ -16,6 +20,7 @@ app.use(express.static("public"));
 // API routes
 app.get("/api/notes", (req, res) => {
 
+    // Get all existing notes from database json
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
 
@@ -32,6 +37,7 @@ app.post("/api/notes", (req, res) => {
     // Adding unique ID to each note
     req.body["id"] = uniqid();
     
+    // Post new note to database json
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
 
@@ -51,6 +57,7 @@ app.post("/api/notes", (req, res) => {
 
 app.delete("/api/notes/:id", (req, res) => {
 
+    // Delete note with specific ID
     fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
 
