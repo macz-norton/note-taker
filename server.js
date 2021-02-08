@@ -56,8 +56,14 @@ app.delete("/api/notes/:id", (req, res) => {
 
         let parsedNotes = JSON.parse(data);
 
-        parsedNotes.push(req.body);
+        let filteredNotes = parsedNotes.filter(({id}) => id != req.params.id);
+        let newNotesArray = JSON.stringify(filteredNotes);
 
+        fs.writeFile("./db/db.json", newNotesArray, (err, data) => {
+            if (err) throw (err);
+
+            return res.json(newNotesArray);
+        });
 
     })
     
