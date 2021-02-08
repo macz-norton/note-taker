@@ -1,7 +1,8 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const { finished } = require("stream");
+
+const db = require("./db/db.json");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,10 +13,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // API routes
-
 app.get("/api/notes", function(req, res) {
 
-    fs.readFile("db.json", (err, data) => {
+    fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
         console.log(data);
     })
@@ -30,7 +30,7 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
 
-    fs.readFile("db.json", (err, data) => {
+    fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
         console.log(data);
     })
@@ -47,7 +47,7 @@ app.post("/api/notes", function(req, res) {
 
 app.delete("/api/notes/:id", function(req, res) {
 
-    fs.readFile("db.json", (err, data) => {
+    fs.readFile("./db/db.json", (err, data) => {
         if (err) throw (err);
         console.log(data);
     })
@@ -59,18 +59,21 @@ app.delete("/api/notes/:id", function(req, res) {
     // .findIndex();
 
     // array.splice / 
+
+    // Return success method
     
 });
 
 // HTML routes
 app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
+// Server starts to listen for requests
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
 });
